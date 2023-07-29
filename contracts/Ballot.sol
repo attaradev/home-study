@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+// Author: @mikeattara
+
 contract Ballot {
     struct Voter {
         uint weight;
@@ -10,7 +12,7 @@ contract Ballot {
     }
 
     struct Proposal {
-        bytes32 name;
+        string name;
         uint voteCount;
     }
 
@@ -18,7 +20,7 @@ contract Ballot {
     mapping(address => Voter) public voters;
     Proposal[] public proposals;
 
-    constructor(bytes32[] memory proposalNames) {
+    constructor(string[] memory proposalNames) {
         chairperson = msg.sender;
         voters[chairperson].weight = 1;
 
@@ -75,7 +77,7 @@ contract Ballot {
         }
     }
 
-    function winnerName() public view returns (bytes32 winnerName_) {
+    function winnerName() public view returns (string memory winnerName_) {
         winnerName_ = proposals[winningProposal()].name;
     }
 }

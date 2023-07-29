@@ -1,6 +1,19 @@
 import { ethers } from "hardhat";
 
-async function main() {
+async function deployBankContract() {
+  const bank = await ethers.deployContract("Bank");
+  await bank.waitForDeployment();
+  console.log(`Bank deployed to ${bank.target}`);
+}
+
+async function deployBallotContract() {
+  const proposalNames = ["Proposal 1", "Proposal 2", "Proposal 3"];
+  const ballot = await ethers.deployContract("Ballot", [proposalNames]);
+  await ballot.waitForDeployment();
+  console.log(`Ballot deployed to ${ballot.target}`);
+}
+
+async function deployLockContract() {
   const currentTimestampInSeconds = Math.round(Date.now() / 1000);
   const unlockTime = currentTimestampInSeconds + 60;
 
@@ -17,6 +30,12 @@ async function main() {
       lockedAmount
     )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
   );
+}
+
+async function main() {
+  await deployBankContract();
+  await deployBallotContract();
+  await deployLockContract();
 }
 
 // We recommend this pattern to be able to use async/await everywhere

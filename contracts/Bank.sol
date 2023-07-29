@@ -3,6 +3,8 @@ pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 
+// Author: @mikeattara
+
 contract Bank {
     struct Account {
         uint balance;
@@ -18,7 +20,6 @@ contract Bank {
     constructor() payable {
         accounts[msg.sender].owner = payable(msg.sender);
         accounts[msg.sender].balance = msg.value;
-        console.log("Deployed contract with balance %s", address(this).balance);
     }
 
     function deposit() public payable {
