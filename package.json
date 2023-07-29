@@ -1,0 +1,18 @@
+{
+  "name": "week1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts/deploy.ts",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.ts"
+  },
+  "keywords": [],
+  "author": "Mike Attara",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "hardhat": "^2.17.0"
+  }
+}
